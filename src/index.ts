@@ -1,9 +1,10 @@
 import { createContext } from '@marblejs/core';
-import { Server } from '@connection';
+import { Database, Server } from '@connection';
 import httpListener from '@app';
 
 const bootstrap = async () => {
+  await Database.connect();
   await Server.create(httpListener.run(createContext()));
 };
 
-bootstrap();
+bootstrap().catch(console.error);

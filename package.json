@@ -19,8 +19,13 @@
     "@marblejs/middleware-body": "^2.1.1",
     "@marblejs/middleware-io": "^2.1.1",
     "@marblejs/middleware-logger": "^2.1.1",
+    "@types/mongoose": "^5.5.1",
+    "@types/node": "^12.0.2",
+    "chalk": "^2.4.2",
+    "mongoose": "^5.5.9",
     "rxjs": "^6.5.2",
-    "tsconfig-paths": "^3.8.0"
+    "tsconfig-paths": "^3.8.0",
+    "typegoose": "^5.6.0"
   },
   "devDependencies": {
     "nodemon": "^1.19.0",

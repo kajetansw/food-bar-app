@@ -14,8 +14,9 @@ interface IConfig {
     port: number;
   };
   db: {
-    urlMain: string;
-    urlTest: string;
+    mongoUser: string;
+    mongoPassword: string;
+    mongoDb: string;
   };
   logger: {
     level: LoggerLevel;
@@ -32,8 +33,9 @@ export const Config: IConfig = {
     port: Number(process.env.PORT) || ENV.SERVER_PORT,
   },
   db: {
-    urlMain: process.env.DB_URL_MAIN || ENV.DB_URL_MAIN,
-    urlTest: process.env.DB_URL_TEST || ENV.DB_URL_TEST,
+    mongoUser: process.env.MONGO_USER || ENV.MONGO_USER,
+    mongoPassword: process.env.MONGO_PASSWORD || ENV.MONGO_PASSWORD,
+    mongoDb: process.env.MONGO_DB || ENV.MONGO_DB
   },
   logger: {
     level: process.env.LOG_LEVEL as LoggerLevel || ENV.LOG_LEVEL,
