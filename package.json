@@ -5,12 +5,16 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "yarn clear && tsc",
-    "clear": "rimraf dist",
+    "build:elm": "cd webapp && elm make src/Main.elm --output elm.js",
+    "clear": "yarn clear:server && yarn clear:elm",
+    "clear:server": "rimraf dist",
+    "clear:elm": "rimraf webapp/elm.js",
     "start": "yarn start:prod",
     "start:dev": "ts-node -r tsconfig-paths/register src/index.ts",
     "start:prod": "node -r ./tsconfig-paths.js dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "nodemon --watch src --ext ts --ignore '*.spec.ts' --exec yarn start:dev"
+    "watch:server": "nodemon --watch src --ext ts --ignore '*.spec.ts' --exec yarn start:dev",
+    "watch:elm": "cd webapp && elm-live src/Main.elm --open --path-to-elm=../node_modules/.bin/elm -- --output=elm.js"
   },
   "author": "Kajetan Swiatek",
   "license": "ISC",
@@ -22,12 +26,15 @@
     "@types/mongoose": "^5.5.1",
     "@types/node": "^12.0.2",
     "chalk": "^2.4.2",
+    "elm": "^0.19.0-no-deps",
     "mongoose": "^5.5.9",
     "rxjs": "^6.5.2",
     "tsconfig-paths": "^3.8.0",
     "typegoose": "^5.6.0"
   },
   "devDependencies": {
+    "elm-format": "^0.8.1",
+    "elm-live": "3.4.0",
     "nodemon": "^1.19.0",
     "rimraf": "^2.6.3",
     "ts-node": "^8.1.0",
