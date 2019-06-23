@@ -1,3 +1,5 @@
 node_modules
 dist
 .idea
+webapp/elm-stuff
+webapp/elm.js

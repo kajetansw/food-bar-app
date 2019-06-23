@@ -1,6 +1,6 @@
 # Food Bar
 
-Sample project for using Elm, MarbleJS and MongoDB.
+Sample project for using Elm, MarbleJS and MongoDB. App for managing recipes and generating shopping lists.
 
 ## Getting Started
 
