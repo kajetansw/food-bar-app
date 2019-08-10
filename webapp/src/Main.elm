@@ -3,13 +3,20 @@ module Main exposing (Recipe, initialModel, view)
 import Browser
 import Html exposing (Html, button, div, form, h1, input, text)
 import Html.Attributes exposing (id, type_)
+import Html.Events exposing (onClick, onInput)
 
 
 type alias Recipe =
     { title : String
     , description : String
-    , preparationTime : Int
+    , preparationTime : Maybe Int
     }
+
+
+type Msg
+    = SaveTitle String
+    | SaveDescription String
+    | SavePreparationTime (Maybe Int)
 
 
 main =
@@ -24,11 +31,11 @@ initialModel : Recipe
 initialModel =
     { title = ""
     , description = ""
-    , preparationTime = 0
+    , preparationTime = Just 0
     }
 
 
-view : Recipe -> Html msg
+view : Recipe -> Html Msg
 view recipe =
     div []
         [ h1 [] [ text "Add recipe" ]
@@ -38,6 +45,7 @@ view recipe =
                 , input
                     [ id "title"
                     , type_ "text"
+                    , onInput SaveTitle
                     ]
                     []
                 ]
@@ -46,6 +54,7 @@ view recipe =
                 , input
                     [ id "description"
                     , type_ "text"
+                    , onInput SaveDescription
                     ]
                     []
                 ]
@@ -54,6 +63,7 @@ view recipe =
                 , input
                     [ id "prep-time"
                     , type_ "number"
+                    , onInput (String.toInt >> SavePreparationTime)
                     ]
                     []
                 ]
@@ -66,6 +76,17 @@ view recipe =
         ]
 
 
-update : msg -> Recipe -> Recipe
-update msg model =
-    initialModel
+update : Msg -> Recipe -> Recipe
+update msg recipe =
+    case msg of
+        SaveTitle title ->
+            { recipe | title = title }
+
+        SaveDescription description ->
+            { recipe | description = description }
+
+        SavePreparationTime (Just preparationTime) ->
+            { recipe | preparationTime = Just preparationTime }
+
+        SavePreparationTime Nothing ->
+            { recipe | preparationTime = Nothing }
