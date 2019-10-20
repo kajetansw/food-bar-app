@@ -29,3 +29,7 @@ button {
   width: 300px;
   padding: 14px 20px;
 }
+
+.recipe-card {
+  border: 1px solid #222222;
+}
