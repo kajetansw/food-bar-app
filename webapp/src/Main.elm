@@ -4,6 +4,10 @@ import Browser
 import Html exposing (Html, button, div, form, h1, h2, input, p, text)
 import Html.Attributes exposing (class, id, type_)
 import Html.Events exposing (onClick, onInput)
+import Http
+import Json.Decode as Decode exposing (Decoder)
+import Json.Decode.Pipeline as JP
+import Json.Encode as Encode
 
 
 
@@ -25,6 +29,8 @@ type Msg
     = SaveTitle String
     | SaveDescription String
     | SavePreparationTime (Maybe Int)
+    | CreateRecipe
+    | RecipeCreated (Result Http.Error Recipe)
 
 
 initialModel : Recipe
@@ -73,7 +79,7 @@ view recipe =
                 ]
             , div []
                 [ button
-                    [ type_ "submit" ]
+                    [ type_ "submit", onClick CreateRecipe ]
                     [ text "Create recipe" ]
                 ]
             ]
@@ -106,29 +112,66 @@ getPreparationTime recipe =
 -- UPDATE
 
 
-update : Msg -> Recipe -> Recipe
+update : Msg -> Recipe -> ( Recipe, Cmd Msg )
 update msg recipe =
     case msg of
         SaveTitle title ->
-            { recipe | title = title }
+            ( { recipe | title = title }, Cmd.none )
 
         SaveDescription description ->
-            { recipe | description = description }
+            ( { recipe | description = description }, Cmd.none )
 
         SavePreparationTime (Just preparationTime) ->
-            { recipe | preparationTime = Just preparationTime }
+            ( { recipe | preparationTime = Just preparationTime }, Cmd.none )
 
         SavePreparationTime Nothing ->
-            { recipe | preparationTime = Nothing }
+            ( { recipe | preparationTime = Nothing }, Cmd.none )
+
+        CreateRecipe ->
+            ( recipe, createRecipe recipe )
+
+        RecipeCreated (Ok _) ->
+            ( recipe, Cmd.none )
+
+        RecipeCreated (Err error) ->
+            ( recipe, Cmd.none )
+
+
+recipeDecoder : Decoder Recipe
+recipeDecoder =
+    Decode.succeed Recipe
+        |> JP.required "title" Decode.string
+        |> JP.required "description" Decode.string
+        |> JP.optional "preparationTime" (Decode.map Just Decode.int) Nothing
+
+
+newRecipeEncoder : Recipe -> Encode.Value
+newRecipeEncoder recipe =
+    Encode.object
+        [ ( "title", Encode.string recipe.title )
+        , ( "description", Encode.string recipe.description )
+        , ( "preparationTime", Encode.int (Maybe.withDefault 0 recipe.preparationTime) )
+        ]
+
+
+createRecipe : Recipe -> Cmd Msg
+createRecipe recipe =
+    Http.post
+        { url = "http://localhost:8888/api/recipe/save"
+        , body = Http.jsonBody (newRecipeEncoder recipe)
+        , expect = Http.expectJson RecipeCreated recipeDecoder
+        }
 
 
 
 -- MAIN
 
 
+main : Program () Recipe Msg
 main =
-    Browser.sandbox
-        { init = initialModel
+    Browser.element
+        { init = \flags -> ( initialModel, Cmd.none )
         , view = view
         , update = update
+        , subscriptions = \_ -> Sub.none
         }

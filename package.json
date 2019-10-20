@@ -9,7 +9,7 @@
     "clear": "yarn clear:server && yarn clear:elm",
     "clear:server": "rimraf dist",
     "clear:elm": "rimraf webapp/elm.js",
-    "elm-format":  "elm-format webapp/src/ --elm-version=0.19 --yes",
+    "elm-format": "elm-format webapp/src/ --elm-version=0.19 --yes",
     "start": "yarn start:prod",
     "start:dev": "ts-node -r tsconfig-paths/register src/index.ts",
     "start:prod": "node -r ./tsconfig-paths.js dist/index.js",
@@ -22,6 +22,7 @@
   "dependencies": {
     "@marblejs/core": "^2.1.1",
     "@marblejs/middleware-body": "^2.1.1",
+    "@marblejs/middleware-cors": "^2.3.1",
     "@marblejs/middleware-io": "^2.1.1",
     "@marblejs/middleware-logger": "^2.1.1",
     "@types/mongoose": "^5.5.1",
