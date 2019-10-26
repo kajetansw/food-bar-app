@@ -1,6 +1,6 @@
 # Food Bar
 
-Sample project for using Elm, MarbleJS and MongoDB. App for managing recipes and generating shopping lists.
+App for managing recipes and generating shopping lists. Created using Elm, MarbleJS and MongoDB. 
 
 ## Getting Started
 
@@ -17,19 +17,9 @@ cd food-bar-app
 
 ### Installing
 
-To start up back-end development server run:
-
-```
-yarn
-yarn start
-```
-or
-```
-npm i
-npm run start
-```
-
-Then server will be up on port 8888.
+To fetch all dependencies run `yarn`.\
+To start up Elm application with live mode run `yarn watch:elm`.\
+To start up backend development server run `yarn watch:server`.
 
 
 ## Running the tests
