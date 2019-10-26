@@ -1,7 +1,9 @@
 import { HttpEffect } from '@marblejs/core';
 import { map, tap } from 'rxjs/operators';
+import { Recipe, RecipeDao } from '@api/recipe/model';
 
 export const saveRecipeEffect$: HttpEffect = req$ => req$.pipe(
-  tap(req => console.log(req.body)), // TODO remove after connecting with Elm form
-  map(req => ({ body: req.body }))
+  map(req => <Recipe>req.body),
+  tap(RecipeDao.save),
+  map(recipe => ({ body: recipe }))
 );

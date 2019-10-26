@@ -9,4 +9,7 @@ export namespace RecipeDao {
       .select({ _id: 0 })
       .exec()
   );
+  
+  export const save = (recipe: Recipe) => 
+    from(model.create(recipe));
 }
