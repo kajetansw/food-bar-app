@@ -2,11 +2,12 @@
 # yarn lockfile v1
 
 
-"@marblejs/core@^2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@marblejs/core/-/core-2.1.1.tgz#bd9a3c36d90d806bb7453cd406816ace68b9fd38"
-  integrity sha512-ptXgIlV1qjMrWkFkgOJDe4kmA0J7LDjchjsOrhFx/9Z902PwcPLJdJWHsEewgK4Mi4lssU4veMkQgpZeFoy3xw==
+"@marblejs/core@^2.3.1":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@marblejs/core/-/core-2.3.1.tgz#c77987824f885b1e4a953db732ea16bb18b7510b"
+  integrity sha512-lL9asX7zNtx/xPVjyeM2Ytre5d1cbtnbsE1gc5kzdinx5YDeLH2vWM9Vy+oLIKzjVKwNtDyX2QaLJpzyBwOpgQ==
   dependencies:
+    "@types/json-schema" "^7.0.3"
     "@types/qs" "^6.5.1"
     "@types/uuid" "^3.4.4"
     chalk "~2.4.1"
@@ -17,32 +18,33 @@
     qs "^6.6.0"
     uuid "^3.3.2"
 
-"@marblejs/middleware-body@^2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@marblejs/middleware-body/-/middleware-body-2.1.1.tgz#00044da95a7766e7900f268718718460e51293c7"
-  integrity sha512-Y/AGHjr6ICepejloLema70w3QFvxrGx4r/22ZlmVr3Shyw+gRjettuSbx5Oy4TFJCsvkaIXRF6gXBkVASRVoRg==
+"@marblejs/middleware-body@~2.3.1":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@marblejs/middleware-body/-/middleware-body-2.3.1.tgz#4097072fb52d39802195344bac4236afe4da24fb"
+  integrity sha512-bWQd1nPTkNjnAflvaCgYeGYPbi0J8wMLeLMIyUyzhCYuQhT5HtUcF33Bb1hAvR92JSmK3/oEC5UHN5gYpYlQjw==
   dependencies:
     "@types/qs" "^6.5.1"
     "@types/type-is" "~1.6.2"
     qs "^6.6.0"
     type-is "~1.6.16"
 
-"@marblejs/middleware-cors@^2.3.1":
+"@marblejs/middleware-cors@~2.3.1":
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/@marblejs/middleware-cors/-/middleware-cors-2.3.1.tgz#baec8dc013b3e0840cbc706d739368d9dc771065"
   integrity sha512-E9NEM9SDFa9XZOu+rVB9LE06EO1PTL55+MSIqIPd+bfd07ineVnAuD9z1HiWEe9pZy9Ty+wFPtING7nah3SoHA==
 
-"@marblejs/middleware-io@^2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@marblejs/middleware-io/-/middleware-io-2.1.1.tgz#5a0215d131128f4583e87e46c647b444ddc324ef"
-  integrity sha512-fJeQcGUwUUJTX54NHrNQ22uus8THM4n5zKTQ0oYqvZk+O7r305B+I6XTcWFuYKvBBWtAp70bNKwRqp+9eoK2Hg==
+"@marblejs/middleware-io@~2.3.1":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@marblejs/middleware-io/-/middleware-io-2.3.1.tgz#26c9f46619057b1a9b8d5960dba81d881322b112"
+  integrity sha512-bIrCZQPCogUzu71fTIAes7BD+si0M9za8wtg4n9i3nHLy85I2tLh5U4zbzPbGxBYa7ix90lNuKsi3qpctVCWTw==
   dependencies:
+    "@types/json-schema" "^7.0.3"
     io-ts "1.8.5"
 
-"@marblejs/middleware-logger@^2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@marblejs/middleware-logger/-/middleware-logger-2.1.1.tgz#fca8ae75a9aba588c6ab739374808de334cc826a"
-  integrity sha512-x2QH5/Mj/+GrfxS/8g4u8/JPKR572KPIQHzHWc6LljlTTtCNkMiP/cuS/lZJnZvuZeuPY+8rPFHev8TUTEIb0A==
+"@marblejs/middleware-logger@~2.3.1":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@marblejs/middleware-logger/-/middleware-logger-2.3.1.tgz#db7cd1b2ad8c7e0048e30d45eec9e1028476221d"
+  integrity sha512-/OpX32EsjKTWNJeudMMZeiY6ciiVtpKCT9+MMzOh2Nrqu11p6CgD9TAUgKtY0PFt9P0Kpp8EWrxouPzKljmJxg==
   dependencies:
     chalk "^2.4.1"
 
@@ -52,6 +54,11 @@
   integrity sha512-pq/rqJwJWkbS10crsG5bgnrisL8pML79KlMKQMoQwLUjlPAkrUHMvHJ3oGwE7WHR61Lv/nadMwXVAD2b+fpD8Q==
   dependencies:
     "@types/node" "*"
+
+"@types/json-schema@^7.0.3":
+  version "7.0.3"
+  resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.3.tgz#bdfd69d61e464dcc81b25159c270d75a73c1a636"
+  integrity sha512-Il2DtDVRGDcqjDtE+rF8iqg1CArehSK84HZJCT7AMITlyXRBpuPhqGLDQMowraqqu1coEaimg4ZOqggt6L6L+A==
 
 "@types/json5@^0.0.29":
   version "0.0.29"
