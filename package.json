@@ -15,7 +15,7 @@
     "start:prod": "node -r ./tsconfig-paths.js dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch:srv": "nodemon --watch src --ext ts --ignore '*.spec.ts' --exec yarn start:dev",
-    "watch:elm": "cd webapp && elm-live src/Main.elm --open --path-to-elm=../node_modules/.bin/elm -- --output=elm.js"
+    "watch:elm": "cd webapp && elm-live src/Main.elm --pushstate --open --path-to-elm=../node_modules/.bin/elm -- --output=elm.js "
   },
   "author": "Kajetan Swiatek",
   "license": "ISC",

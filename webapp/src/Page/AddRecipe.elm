@@ -1,4 +1,4 @@
-module Page.AddRecipe exposing (Msg, initialModel, update, view)
+module Page.AddRecipe exposing (Msg, init, initialModel, update, view)
 
 import Html exposing (Html, button, div, form, h1, input, text)
 import Html.Attributes exposing (id, type_)
@@ -11,6 +11,10 @@ import Recipe exposing (..)
 -- MODEL
 
 
+type alias Model =
+    Recipe
+
+
 type Msg
     = SaveTitle String
     | SaveDescription String
@@ -19,7 +23,7 @@ type Msg
     | RecipeCreated (Result Http.Error Recipe)
 
 
-initialModel : Recipe
+initialModel : Model
 initialModel =
     { title = ""
     , description = ""
@@ -27,11 +31,16 @@ initialModel =
     }
 
 
+init : ( Model, Cmd Msg )
+init =
+    ( initialModel, Cmd.none )
+
+
 
 -- VIEW
 
 
-view : Recipe -> Html Msg
+view : Model -> Html Msg
 view recipe =
     div []
         [ h1 [] [ text "Add recipe" ]
@@ -76,7 +85,7 @@ view recipe =
 -- UPDATE
 
 
-update : Msg -> Recipe -> ( Recipe, Cmd Msg )
+update : Msg -> Recipe -> ( Model, Cmd Msg )
 update msg recipe =
     case msg of
         SaveTitle title ->
