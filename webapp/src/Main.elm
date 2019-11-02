@@ -1,24 +1,15 @@
-module Main exposing (Recipe, initialModel, view)
+module Main exposing (initialModel, view)
 
 import Browser
 import Html exposing (Html, button, div, form, h1, h2, input, p, text)
 import Html.Attributes exposing (class, id, type_)
 import Html.Events exposing (onClick, onInput)
 import Http
-import Json.Decode as Decode exposing (Decoder)
-import Json.Decode.Pipeline as JP
-import Json.Encode as Encode
+import Recipe exposing (..)
 
 
 
 -- MODEL
-
-
-type alias Recipe =
-    { title : String
-    , description : String
-    , preparationTime : Maybe Int
-    }
 
 
 type alias Model =
@@ -95,19 +86,6 @@ viewRecipe recipe =
         ]
 
 
-getPreparationTime : Recipe -> String
-getPreparationTime recipe =
-    let
-        prepTime =
-            Maybe.withDefault 0 recipe.preparationTime
-    in
-    if prepTime >= 0 then
-        String.fromInt prepTime
-
-    else
-        "Unknown"
-
-
 
 -- UPDATE
 
@@ -135,23 +113,6 @@ update msg recipe =
 
         RecipeCreated (Err error) ->
             ( recipe, Cmd.none )
-
-
-recipeDecoder : Decoder Recipe
-recipeDecoder =
-    Decode.succeed Recipe
-        |> JP.required "title" Decode.string
-        |> JP.required "description" Decode.string
-        |> JP.optional "preparationTime" (Decode.map Just Decode.int) Nothing
-
-
-newRecipeEncoder : Recipe -> Encode.Value
-newRecipeEncoder recipe =
-    Encode.object
-        [ ( "title", Encode.string recipe.title )
-        , ( "description", Encode.string recipe.description )
-        , ( "preparationTime", Encode.int (Maybe.withDefault 0 recipe.preparationTime) )
-        ]
 
 
 createRecipe : Recipe -> Cmd Msg

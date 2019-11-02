@@ -9,7 +9,7 @@
     "clear": "yarn clear:server && yarn clear:elm",
     "clear:server": "rimraf dist",
     "clear:elm": "rimraf webapp/elm.js",
-    "elm-format": "elm-format webapp/src/ --elm-version=0.19 --yes",
+    "elm:format": "elm-format webapp/src/ --elm-version=0.19 --yes",
     "start": "yarn start:prod",
     "start:dev": "ts-node -r tsconfig-paths/register src/index.ts",
     "start:prod": "node -r ./tsconfig-paths.js dist/index.js",
